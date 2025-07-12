@@ -1,1 +1,5 @@
 # mylibc
+
+```
+make build
+```
