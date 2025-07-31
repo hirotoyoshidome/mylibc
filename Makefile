@@ -6,7 +6,7 @@ OBJDIR = obj
 SRCS := $(wildcard $(SRCDIR)/*.c)
 OBJS := $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
-.PHONY:	build	clean	test
+.PHONY:	build	clean	format	test
 
 .SILENT:
 build: $(OBJS)
@@ -18,6 +18,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 	@rm -rf $(OBJDIR)
 
+format:
+	clang-format -i src/*.c
 
 test:
 	$(CC) $(CFLAGS) -I./src -c tests/main.c -o tests/main.o
