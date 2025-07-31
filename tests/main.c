@@ -10,9 +10,7 @@ typedef struct {
 
 int main() {
 
-    TestCase tests[] = {
-        {"test_list_01", test_list_01}
-    };
+    TestCase tests[] = {{"test_list_01", test_list_01}};
 
     int test_num = sizeof(tests) / sizeof(TestCase);
 

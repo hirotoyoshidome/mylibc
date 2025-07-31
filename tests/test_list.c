@@ -1,7 +1,7 @@
-#include <assert.h>
 #include "cx_list.h"
+#include <assert.h>
 
-void test_list_01 () {
+void test_list_01() {
     List *l = cx_create_list();
     assert(l != NULL);
 

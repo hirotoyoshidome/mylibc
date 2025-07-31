@@ -20,6 +20,7 @@ clean:
 
 format:
 	clang-format -i src/*.c
+	clang-format -i tests/*.c
 
 test:
 	$(CC) $(CFLAGS) -I./src -c tests/main.c -o tests/main.o
