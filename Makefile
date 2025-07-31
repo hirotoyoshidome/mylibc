@@ -23,4 +23,4 @@ test:
 	$(CC) $(CFLAGS) -I./src -c tests/main.c -o tests/main.o
 	$(CC) $(CFLAGS) -o tests/test tests/main.o obj/*.o
 	./tests/test
-	rm ./tests/test ./tests/*.o || true
+	@rm ./tests/test ./tests/*.o || true
