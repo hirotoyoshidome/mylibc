@@ -2,23 +2,19 @@
 #include <stdbool.h>
 
 // 初期化
-void cx_init_stack(Stack* s) {
+void cx_init_stack(Stack *s) {
     // 空の場合は-1を設定
     s->top = -1;
 }
 
 // 空判定
-bool cx_is_empty_stack(Stack* s) {
-    return s->top == -1;
-}
+bool cx_is_empty_stack(Stack *s) { return s->top == -1; }
 
 // 満杯判定
-bool cx_is_full_stack(Stack* s) {
-    return s->top == STACK_SIZE - 1;
-}
+bool cx_is_full_stack(Stack *s) { return s->top == STACK_SIZE - 1; }
 
 // 追加
-bool cx_push_stack(Stack* s, int value) {
+bool cx_push_stack(Stack *s, int value) {
     if (cx_is_full_stack(s)) {
         return false;
     }
@@ -29,7 +25,7 @@ bool cx_push_stack(Stack* s, int value) {
 }
 
 // 取り出し
-bool cx_pop_stack(Stack* s, int* value) {
+bool cx_pop_stack(Stack *s, int *value) {
     if (cx_is_empty_stack(s)) {
         return false;
     }

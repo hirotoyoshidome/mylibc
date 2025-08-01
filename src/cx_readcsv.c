@@ -1,35 +1,43 @@
 #include "cx_readcsv.h"
 
+#include "cx_list.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cx_list.h"
 
-void cx_read_csv(CSV* csv, char* filepath) {
-    FILE* f = fopen(filepath, "r");
-    if (f == NULL) return;
+void cx_read_csv(CSV *csv, char *filepath) {
+    FILE *f = fopen(filepath, "r");
+    if (f == NULL) {
+        return;
+    }
 
     int current = 0;
-    while(current < CSV_MAX_ROWS) {
-        char* s = (char*)malloc(sizeof(char[255]));
-        if (s == NULL) break;
+    while (current < CSV_MAX_ROWS) {
+        char *s = (char *)malloc(sizeof(char[255]));
+        if (s == NULL) {
+            break;
+        }
 
-        if (fgets(s, CSV_MAX_COLS, f) == NULL) break;
+        if (fgets(s, CSV_MAX_COLS, f) == NULL) {
+            break;
+        }
 
         // 改行を削除(改行の場所にEOSを設定)
         s[strcspn(s, "\n")] = '\0';
 
         // 空文字ならスキップ
-        if (strcmp(s, "") == 0) continue;
+        if (strcmp(s, "") == 0) {
+            continue;
+        }
 
         // リストに詰める
-        List* row = cx_create_list();
+        List *row = cx_create_list();
         // 残・分割してlistに詰める
         cx_push_list(row, s);
 
         csv->rows[current] = row;
         current++;
-	}
+    }
 
     // 長さを保持
     csv->length = current;
@@ -38,10 +46,10 @@ void cx_read_csv(CSV* csv, char* filepath) {
 }
 
 // メモリ解放
-void cx_free_csv(CSV* csv) {
+void cx_free_csv(CSV *csv) {
     for (int i = 0; i < csv->length; i++) {
-        List* l = csv->rows[i];
-        if(l != NULL) {
+        List *l = csv->rows[i];
+        if (l != NULL) {
             cx_free_list(l);
         }
     }
