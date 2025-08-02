@@ -1,21 +1,43 @@
 #include "cx_queue.h"
 #include <stdbool.h>
+#include <stddef.h>
 
-// 初期化
+// TODO boolやめる
+
 void cx_init_queue(Queue *q) {
+    if (q == NULL) {
+        return;
+    }
+
     q->front = 0;
     q->rear = 0;
     q->count = 0;
 }
 
 // 空判定
-bool cx_is_empty_queue(Queue *q) { return q->count == 0; }
+bool cx_is_empty_queue(Queue *q) {
+    if (q == NULL) {
+        return false;
+    }
+
+    return q->count == 0;
+}
 
 // 満杯判定
-bool cx_is_full_queue(Queue *q) { return q->count == QUEUE_SIZE; }
+bool cx_is_full_queue(Queue *q) {
+    if (q == NULL) {
+        return false;
+    }
+
+    return q->count == QUEUE_SIZE;
+}
 
 // エンキュー(追加)
 bool cx_enqueue(Queue *q, int value) {
+    if (q == NULL) {
+        return false;
+    }
+
     if (cx_is_full_queue(q)) {
         return false;
     }
@@ -30,6 +52,10 @@ bool cx_enqueue(Queue *q, int value) {
 
 // デュー(取り出し)
 bool cx_dequeue(Queue *q, int *value) {
+    if (q == NULL || value == NULL) {
+        return false;
+    }
+
     if (cx_is_empty_queue(q)) {
         return false;
     }
