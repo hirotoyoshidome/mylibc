@@ -19,12 +19,12 @@ void cx_push_list(List *l, char *_value) {
 
     ListNode *node = (ListNode *)malloc(sizeof(ListNode));
     if (node == NULL) {
-        return NULL;
+        return;
     }
 
     char *val = (char *)malloc(sizeof(*_value));
     if (val == NULL) {
-        return NULL;
+        return;
     }
 
     strcpy(val, _value);
