@@ -13,9 +13,13 @@ typedef struct List {
     ListNode *front;
 } List;
 
-List *cx_create_list();
-void cx_push_list(List *l, char *_value);
-void cx_foreach_show_list(List *l);
+List *cx_init_list();
 void cx_free_list(List *l);
+
+// Listに追加
+void cx_push_list(List *l, char *_value);
+
+// ループして表示
+void cx_foreach_show_list(List *l);
 
 #endif // CUSTOM_EXTENDED_LIST_H

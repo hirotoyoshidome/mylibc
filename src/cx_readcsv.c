@@ -31,7 +31,7 @@ void cx_read_csv(CSV *csv, char *filepath) {
         }
 
         // リストに詰める
-        List *row = cx_create_list();
+        List *row = cx_init_list();
         // 残・分割してlistに詰める
         cx_push_list(row, s);
 

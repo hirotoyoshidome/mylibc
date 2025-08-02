@@ -3,20 +3,30 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Listの生成
-List *cx_create_list() {
+List *cx_init_list() {
     List *l = (List *)malloc(sizeof(List));
-    if (!l) {
+    if (l == NULL) {
         return NULL;
     }
 
     return l;
 }
 
-// Listに追加
 void cx_push_list(List *l, char *_value) {
+    if (l == NULL || _value == NULL) {
+        return;
+    }
+
     ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+    if (node == NULL) {
+        return NULL;
+    }
+
     char *val = (char *)malloc(sizeof(*_value));
+    if (val == NULL) {
+        return NULL;
+    }
+
     strcpy(val, _value);
     node->value = val;
 
@@ -33,8 +43,12 @@ void cx_push_list(List *l, char *_value) {
     }
 }
 
-// ループして表示(コールバックにはしない)
+// コールバックにはしない
 void cx_foreach_show_list(List *l) {
+    if (l == NULL) {
+        return;
+    }
+
     ListNode *node = l->front;
     while (node->next != NULL) {
         printf("%s\n", node->value);
@@ -43,15 +57,21 @@ void cx_foreach_show_list(List *l) {
     printf("%s\n", node->value);
 }
 
-// メモリの開放
 void cx_free_list(List *l) {
+    if (l == NULL) {
+        return;
+    }
+
     // ノードの解放(先頭から解放する)
     while (l->front != NULL) {
         ListNode *node = l->front;
         // 先頭ノードをつなぎ替える
         l->front = node->next;
+
         free(node->value);
+        node->value = NULL;
         free(node);
+        node = NULL;
     }
 
     // リストの解放

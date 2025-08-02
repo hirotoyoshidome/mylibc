@@ -2,7 +2,7 @@
 #include <assert.h>
 
 void test_list_01() {
-    List *l = cx_create_list();
+    List *l = cx_init_list();
     assert(l != NULL);
 
     cx_free_list(l);
