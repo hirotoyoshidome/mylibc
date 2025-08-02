@@ -5,9 +5,9 @@
 #include "cx_list.h"
 #include "cx_string.h"
 
+#include "cx_logger.h"
 #include "cx_queue.h"
 #include "cx_stack.h"
-#include "cx_logger.h"
 
 #include "cx_readcsv.h"
 

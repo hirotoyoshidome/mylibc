@@ -10,11 +10,11 @@
 
 // CSVの構造体(Listのポインタの配列を持つ)
 typedef struct CSV {
-    List* rows[CSV_MAX_ROWS];
+    List *rows[CSV_MAX_ROWS];
     int length;
-}CSV;
+} CSV;
 
-void cx_read_csv(CSV* csv, char* filepath);
-void cx_free_csv(CSV* csv);
+void cx_read_csv(CSV *csv, char *filepath);
+void cx_free_csv(CSV *csv);
 
 #endif // CUSTOM_EXTENDED_READCSV_H
