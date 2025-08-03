@@ -10,7 +10,7 @@ void cx_init_logger(Logger *logger, char *_log_paht, LogLevel _level) {
 
 int _write_log(Logger *logger, char *msg, LogLevel _level) {
     FILE *f = fopen(logger->log_path, "a");
-    if (!f) {
+    if (f == NULL) {
         return 0;
     }
 

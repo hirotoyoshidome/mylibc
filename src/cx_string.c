@@ -5,10 +5,15 @@
 
 // 文字列分割 非破壊(呼び出し側でsepd[0]のメモリを解放する必要があります)
 int cx_split(char *sepd[], char *txt, char *sep) {
-    char *buf = malloc(strlen(txt) + 1);
-    if (!buf) {
+    if (sepd == NULL || txt == NULL || sep == NULL) {
         return -1;
     }
+
+    char *buf = malloc(strlen(txt) + 1);
+    if (buf == NULL) {
+        return -1;
+    }
+
     strcpy(buf, txt);
 
     int idx = 0;
@@ -26,10 +31,14 @@ int cx_split(char *sepd[], char *txt, char *sep) {
 
 // 文字列結合(呼び出し側で解放する)
 char *cx_concat(char *txt1, char *txt2) {
+    if (txt1 == NULL || txt2 == NULL) {
+        return NULL;
+    }
+
     // ヒープに領域を確保する
     size_t size = sizeof(char) * (strlen(txt1) + strlen(txt2) + 1);
     char *res = (char *)malloc(size);
-    if (!res) {
+    if (res == NULL) {
         return NULL;
     }
 
@@ -42,7 +51,7 @@ char *cx_concat(char *txt1, char *txt2) {
 
 // trim(メモリの解放の必要あり)
 char *cx_trim(char *txt) {
-    if (!txt) {
+    if (txt == NULL) {
         return NULL;
     }
 
@@ -70,7 +79,7 @@ char *cx_trim(char *txt) {
     // 新しい文字列を作成して返却(EOSを考慮)
     size_t length = (size_t)(end - txt + 1);
     char *res = (char *)malloc(length + 1);
-    if (!res) {
+    if (res == NULL) {
         return NULL;
     }
 
@@ -83,13 +92,13 @@ char *cx_trim(char *txt) {
 
 // 大文字に変換(free必要)
 char *cx_upper(char *txt) {
-    if (!txt) {
+    if (txt == NULL) {
         return NULL;
     }
 
     size_t len = strlen(txt);
     char *res = (char *)malloc(len + 1);
-    if (!res) {
+    if (res == NULL) {
         return NULL;
     }
 
@@ -104,13 +113,13 @@ char *cx_upper(char *txt) {
 
 // 小文字に変換(free必要)
 char *cx_lower(char *txt) {
-    if (!txt) {
+    if (txt == NULL) {
         return NULL;
     }
 
     size_t len = strlen(txt);
     char *res = (char *)malloc(len + 1);
-    if (!res) {
+    if (res == NULL) {
         return NULL;
     }
 
@@ -125,6 +134,10 @@ char *cx_lower(char *txt) {
 
 // 対象の文字で始まるか判定
 int cx_startswith(char *txt, char *tar) {
+    if (txt == NULL || tar == NULL) {
+        return -1;
+    }
+
     size_t len = strlen(tar);
     // 文字数を指定して比較
     return strncmp(txt, tar, len) == 0;
@@ -132,6 +145,10 @@ int cx_startswith(char *txt, char *tar) {
 
 // 対象の文字で終わるか判定
 int cx_endswith(char *txt, char *tar) {
+    if (txt == NULL || tar == NULL) {
+        return -1;
+    }
+
     size_t txtlen = strlen(txt);
     size_t tarlen = strlen(tar);
 
