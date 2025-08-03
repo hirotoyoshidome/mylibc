@@ -11,7 +11,6 @@ void cx_init_queue(Queue *q) {
     q->count = 0;
 }
 
-// 空判定
 int cx_is_empty_queue(Queue *q) {
     if (q == NULL) {
         return -1;
@@ -20,7 +19,6 @@ int cx_is_empty_queue(Queue *q) {
     return q->count == 0 ? 0 : 1;
 }
 
-// 満杯判定
 int cx_is_full_queue(Queue *q) {
     if (q == NULL) {
         return -1;
@@ -29,7 +27,6 @@ int cx_is_full_queue(Queue *q) {
     return q->count == QUEUE_SIZE ? 0 : 1;
 }
 
-// エンキュー(追加)
 int cx_enqueue(Queue *q, int value) {
     if (q == NULL) {
         return -1;
@@ -47,7 +44,6 @@ int cx_enqueue(Queue *q, int value) {
     return 0;
 }
 
-// デュー(取り出し)
 int cx_dequeue(Queue *q, int *value) {
     if (q == NULL || value == NULL) {
         return -1;

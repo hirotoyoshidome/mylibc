@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <time.h>
 
-// Loggerの作成
 void cx_init_logger(Logger *logger, char *_log_paht, LogLevel _level) {
     logger->log_path = _log_paht;
     logger->level = _level;

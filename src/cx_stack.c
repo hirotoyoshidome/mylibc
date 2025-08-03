@@ -10,7 +10,6 @@ void cx_init_stack(Stack *s) {
     s->top = -1;
 }
 
-// 空判定
 int cx_is_empty_stack(Stack *s) {
     if (s == NULL) {
         return -1;
@@ -19,7 +18,6 @@ int cx_is_empty_stack(Stack *s) {
     return s->top == -1 ? 0 : 1;
 }
 
-// 満杯判定
 int cx_is_full_stack(Stack *s) {
     if (s == NULL) {
         return -1;
@@ -28,7 +26,6 @@ int cx_is_full_stack(Stack *s) {
     return s->top == STACK_SIZE - 1 ? 0 : 1;
 }
 
-// 追加
 int cx_push_stack(Stack *s, int value) {
     if (s == NULL) {
         return -1;
@@ -43,7 +40,6 @@ int cx_push_stack(Stack *s, int value) {
     return 0;
 }
 
-// 取り出し
 int cx_pop_stack(Stack *s, int *value) {
     if (s == NULL || value == NULL) {
         return -1;
