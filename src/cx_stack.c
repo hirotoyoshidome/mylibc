@@ -1,8 +1,5 @@
 #include "cx_stack.h"
-#include <stdbool.h>
 #include <stddef.h>
-
-// TODO boolやめる
 
 void cx_init_stack(Stack *s) {
     if (s == NULL) {
@@ -14,49 +11,49 @@ void cx_init_stack(Stack *s) {
 }
 
 // 空判定
-bool cx_is_empty_stack(Stack *s) {
+int cx_is_empty_stack(Stack *s) {
     if (s == NULL) {
-        return false;
+        return -1;
     }
 
-    return s->top == -1;
+    return s->top == -1 ? 0 : 1;
 }
 
 // 満杯判定
-bool cx_is_full_stack(Stack *s) {
+int cx_is_full_stack(Stack *s) {
     if (s == NULL) {
-        return false;
+        return -1;
     }
 
-    return s->top == STACK_SIZE - 1;
+    return s->top == STACK_SIZE - 1 ? 0 : 1;
 }
 
 // 追加
-bool cx_push_stack(Stack *s, int value) {
+int cx_push_stack(Stack *s, int value) {
     if (s == NULL) {
-        return false;
+        return -1;
     }
 
     if (cx_is_full_stack(s)) {
-        return false;
+        return 1;
     }
     s->top++;
     s->data[s->top] = value;
 
-    return true;
+    return 0;
 }
 
 // 取り出し
-bool cx_pop_stack(Stack *s, int *value) {
+int cx_pop_stack(Stack *s, int *value) {
     if (s == NULL || value == NULL) {
-        return false;
+        return -1;
     }
 
     if (cx_is_empty_stack(s)) {
-        return false;
+        return 1;
     }
     *value = s->data[s->top];
     s->top--;
 
-    return true;
+    return 0;
 }
