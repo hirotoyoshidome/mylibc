@@ -13,10 +13,13 @@ typedef struct HashMap {
     int length;
 } HashMap;
 
-// 関数定義
-HashMap *cx_create_hashmap();
-void cx_put_hashmap(HashMap *hm, char *_key, char *_value);
-int cx_get_hashmap(HashMap *hm, char *_key, char *_ovalue);
+HashMap *cx_init_hashmap();
 void cx_free_hashmap(HashMap *hm);
+
+// 値の設定
+void cx_put_hashmap(HashMap *hm, char *_key, char *_value);
+
+// 値の取り出し
+int cx_get_hashmap(HashMap *hm, char *_key, char *_ovalue);
 
 #endif // CUSTOM_EXTENDED_HASHMAP_H

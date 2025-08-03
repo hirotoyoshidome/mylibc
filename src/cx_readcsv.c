@@ -6,6 +6,10 @@
 #include <string.h>
 
 void cx_read_csv(CSV *csv, char *filepath) {
+    if (csv == NULL || filepath == NULL) {
+        return;
+    }
+
     FILE *f = fopen(filepath, "r");
     if (f == NULL) {
         return;
@@ -31,7 +35,7 @@ void cx_read_csv(CSV *csv, char *filepath) {
         }
 
         // リストに詰める
-        List *row = cx_create_list();
+        List *row = cx_init_list();
         // 残・分割してlistに詰める
         cx_push_list(row, s);
 
@@ -45,8 +49,11 @@ void cx_read_csv(CSV *csv, char *filepath) {
     fclose(f);
 }
 
-// メモリ解放
 void cx_free_csv(CSV *csv) {
+    if (csv == NULL) {
+        return;
+    }
+
     for (int i = 0; i < csv->length; i++) {
         List *l = csv->rows[i];
         if (l != NULL) {
